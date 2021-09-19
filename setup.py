@@ -9,8 +9,5 @@ setup(name="manic",
       author_email="yvanaillet@gmail.com",
       packages=["manic", "tests"],
       package_data={'manic': ['data/*.tzx']},
-      install_requires=["Pillow"],
-      # extras_require={
-      #       "dev": ["requests-mock"],
-      # },
+      install_requires=["Pillow", "bitarray", "pytest"],
       license="Apache 2.0")

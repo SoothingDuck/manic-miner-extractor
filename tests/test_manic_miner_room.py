@@ -18,6 +18,20 @@ def test_room_name(central_cavern, cold_room):
     assert central_cavern.name == "Central Cavern"
     assert cold_room.name == "The Cold Room"
 
+
+def test_room_layout(central_cavern):
+
+    block_layout = central_cavern.layout
+
+    colors = block_layout.colors
+
+    first_block = colors[0][0]
+
+    assert not first_block.flash
+    assert not first_block.brightness
+    assert first_block.paper_colour == ManicMinerColorAttribute.RED
+    assert first_block.ink_colour == ManicMinerColorAttribute.YELLOW
+
 @pytest.mark.usefixtures("manic_miner_file")
 def test_exists_final_barrier(manic_miner_file):
     exist_final_barrier = False
