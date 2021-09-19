@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import pytest
+from manic import ManicMinerColorAttribute
 
 @pytest.mark.usefixtures("manic_miner_file")
 @pytest.fixture

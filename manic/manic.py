@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-import bitarray
+from bitarray.util import int2ba, ba2int
 
 class ManicMinerColorAttribute():
 
@@ -12,9 +12,35 @@ class ManicMinerColorAttribute():
     # PPP represents paper colour (000=black, 001=blue, 010=red, 011=magenta, 100=green, 101=cyan, 110=yellow, 111=white);
     # III represents ink colour (as above).
 
+    BLACK = 0
+    BLUE = 1
+    RED = 2
+    MAGENTA = 3
+    GREEN = 4
+    CYAN = 5
+    YELLOW = 6
+    WHITE = 7
+
     def __init__(self, character):
         self._character = character
+        self._ba = int2ba(int(character), 8)
 
+    @property
+    def flash(self):
+        return self._ba[0] == 1
+
+    @property
+    def brightness(self):
+        return self._ba[1] == 1
+
+    @property
+    def paper_colour(self):
+        return ba2int(self._ba[2:5])
+
+    @property
+    def ink_colour(self):
+        return ba2int(self._ba[5:8])
+    
 class ManicMinerRoomLayout():
 
     def __init__(self, buffer):
@@ -24,7 +50,10 @@ class ManicMinerRoomLayout():
     def colors(self):
         result = []
         for i in range(16):
-            result.append(self._buffer[(i*32):((i+1)*32)])
+            tmp = []
+            for j in range(32):
+                tmp.append(ManicMinerColorAttribute(self._buffer[(i*32)+j]))
+            result.append(tmp)
         return(result)
 
 
