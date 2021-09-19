@@ -34,20 +34,21 @@ def manic_miner_color_struct(color_byte):
 
     return(flash, brightness, manic_miner_get_color(paper_colour), manic_miner_get_color(ink_colour))
 
-f = open("Manic Miner.tzx", "rb")
+if __name__ == '__main__':
+    f = open("Manic Miner.tzx", "rb")
 
-offset = int("33B4", 16) + 32 + 1 + 8 + 9 + 9 + 9 + 9 + 9 + 9 + 9
+    offset = int("33B4", 16) + 32 + 1 + 8 + 9 + 9 + 9 + 9 + 9 + 9 + 9
 
-f.seek(offset)
-color = f.read(1)
-block = f.read(8)
+    f.seek(offset)
+    color = f.read(1)
+    block = f.read(8)
 
-flash, brightness, background_color, ink_color = manic_miner_color_struct(color)
-img = Image.new("RGB", (8, 8), color = background_color)
-pixels = img.load()
-for j, b in enumerate(block):
-    for i, f in enumerate(manic_miner_convert_byte_to_binary_string(b)):
-        if f == "1":
-            pixels[i, j] = ink_color
+    flash, brightness, background_color, ink_color = manic_miner_color_struct(color)
+    img = Image.new("RGB", (8, 8), color = background_color)
+    pixels = img.load()
+    for j, b in enumerate(block):
+        for i, f in enumerate(manic_miner_convert_byte_to_binary_string(b)):
+            if f == "1":
+                pixels[i, j] = ink_color
 
-img.save("toto.png")
+    img.save("toto.png")
