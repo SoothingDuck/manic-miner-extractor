@@ -6,7 +6,7 @@
   []
   (.getFile (io/resource "manic_miner.tzx")))
 
-(defn manic-miner-raw-data
+(defn raw-data
   "Les données du fichier .tzx au format binaire"
   []
   (let [manic-file (manic-miner-filename)

@@ -7,7 +7,7 @@
   (:require [manic-miner.room :as file])
   (:require [manic-miner.tools :as tools]))
 
-(map room/name (room/manic-miner-rooms-data))
+(map room/name (room/data-list))
 
 (defn -main
   "I don't do a whole lot ... yet."
