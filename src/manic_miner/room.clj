@@ -11,9 +11,3 @@
     (s/trim (apply str (map char room-slice)))
     ))
 
-(defn data-list
-  "Les données de chaque pièce séparées dans un vecteur"
-  []
-  (let [raw-data (file/raw-data)
-        offset-rooms (range const/FILE_OFFSET_CENTRAL_CAVERN const/FILE_OFFSET_LAST_CAVE 1024)]
-    (map #(tools/slice-array raw-data % (+ % 1024)) offset-rooms)))
