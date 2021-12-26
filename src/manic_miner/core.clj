@@ -10,4 +10,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (map room/title (file/room-data-list))))
+  (println (get {true 1 false 0} false))
+  )

@@ -11,3 +11,10 @@
     (s/trim (apply str (map char room-slice)))
     ))
 
+(defn layout
+  "Récupère la disposition de la pièce"
+  [room-array]
+  (let [layout-vec (tools/slice-array room-array const/ROOM_OFFSET_ROOM_LAYOUT_BEGIN const/ROOM_OFFSET_ROOM_LAYOUT_END)]
+    (partition 32 layout-vec)
+    )
+  )
