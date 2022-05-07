@@ -5,11 +5,8 @@
   )
 
 
-(def data-file (io/resource 
-                   "manic_miner.tzx" ))
-
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (dump/raw-data))
+  (byte-streams/print-bytes dump/raw-data)
   )
