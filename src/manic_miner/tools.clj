@@ -1,4 +1,6 @@
-(ns manic-miner.tools)
+(ns manic-miner.tools
+  (:require [clojure.java.io :as io])
+)
 
 (defn to-hex-string-byte
   "Conversion d'un byte en sa valeur hexadecimale"
@@ -16,3 +18,9 @@
   "Returns a manageable slice of an array"
   [arr begin end]
   (vec (subvec arr begin end)))
+
+(defn file->bytes [path]
+  (with-open [in (io/input-stream path)
+              out (java.io.ByteArrayOutputStream.)]
+    (io/copy in out)
+    (.toByteArray out)))
