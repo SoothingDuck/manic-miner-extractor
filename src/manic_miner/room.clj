@@ -4,6 +4,13 @@
   (:require [manic-miner.file :as file])
   (:require [manic-miner.const :as const]))
 
+(def rooms
+  [
+   {:name "Central Cavern"}
+   {:name "Moda"}
+   ]
+  )
+
 (defn title
   "Récupère le nom de la pièce"
   [room-array]
