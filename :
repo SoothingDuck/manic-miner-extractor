@@ -1,7 +1,6 @@
 (ns manic-miner.core
   (:require [org.clojars.smee.binary.core :as b]
-            [clojure.java.io :as io]
-            [clojure.string :as s])
+            [clojure.java.io :as io])
   (:gen-class)
   )
 
@@ -32,7 +31,7 @@
   "Description globale du fichier manic miner"
   (b/ordered-map
     :header-junk (byte-list (- 0x33b4 512))
-    :rooms (b/repeated manic-miner-room :length 20)
+    :rooms (b/repeated manic-miner-room :length 10)
     )
     
 )  
@@ -45,8 +44,6 @@
 
 (let [decoded (decode-manic manic-miner-filename)
       room-names-list (map :room-name (:rooms decoded))]
-  (doall
-    (map (comp println s/trim) room-names-list))
 )
 
 
