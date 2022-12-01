@@ -1,7 +1,7 @@
 (ns manic-miner.core
   (:require [org.clojars.smee.binary.core :as b]
-            [clojure.java.io :as io]
-            [clojure.string :as s])
+    [clojure.java.io :as io]
+    [clojure.string :as s])
   (:gen-class)
   )
 
@@ -71,7 +71,7 @@
     :rooms (b/repeated manic-miner-room :length 20)
     )
     
-)  
+  )  
 
 (defn decode-manic 
   "Fonction pour décoder un fichier manic miner"
@@ -121,7 +121,7 @@
 (let [layout (:screen-layout central-cavern)
       node-list (map (comp :paper-colour colour-attributes) layout)
       ]
-  (println node-list)
+  node-list
   )
 
 
