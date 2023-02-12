@@ -3,30 +3,23 @@
    [org.clojars.smee.binary.core :as b]
    [manic-miner.tools :as tools]
    [manic-miner.colour :as colour]
-   )
-  )
-
-(def block-graphic
-  "Element d'affichage"
-  (b/ordered-map
-   :colour-attribute :byte
-   :pixel-pattern (b/repeated :byte :length 8)
+   [manic-miner.block :as block]
    )
   )
 
 
-(def block-graphics
+(def elements
   "Les block graphics pour le background"
   (b/ordered-map
 
-   :background block-graphic
-   :floor block-graphic
-   :crumbling-floor block-graphic
-   :wall block-graphic
-   :conveyor block-graphic
-   :nasty-1 block-graphic
-   :nasty-2 block-graphic
-   :spare block-graphic
+   :background block/graphic
+   :floor block/graphic
+   :crumbling-floor block/graphic
+   :wall block/graphic
+   :conveyor block/graphic
+   :nasty-1 block/graphic
+   :nasty-2 block/graphic
+   :spare block/graphic
 
    )
   )
@@ -36,7 +29,7 @@
   (b/ordered-map
    :screen-layout (tools/byte-list 512) ;; 0 to 511
    :room-name (b/string "US-ASCII" :length 32) ;; 512 to 543
-   :block-graphics block-graphics ;; 72 - 544 to 615
+   :elements elements ;; 72 - 544 to 615
    :miner-willy-start-position (tools/byte-list 7) ;; 616 to 622
    :conveyor (tools/byte-list 4) ;; 623 to 626
    :border-color :byte ;; 1 - 627

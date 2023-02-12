@@ -3,7 +3,8 @@
    [manic-miner.file :as file]
    [manic-miner.colour :as colour]
 
-   [manic-miner.room :as room])
+   [manic-miner.room :as room]
+   [manic-miner.block :as block])
   (:gen-class)
   )
 
@@ -14,4 +15,10 @@
   )
 
 
-(print (room/layout-ascii (nth file/room-list 1)))
+;; (print (room/layout-ascii (nth file/room-list 1)))
+
+(-> file/central-cavern
+    :elements
+    :background
+    block/layout-ascii
+    print)
