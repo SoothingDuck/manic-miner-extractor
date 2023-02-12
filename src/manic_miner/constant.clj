@@ -1,6 +1,12 @@
 (ns manic-miner.constant)
 
+;; Colour
 (def MASK_BLOCK_FLASH 2r10000000)
 (def MASK_BLOCK_BRIGHTNESS 2r01000000)
 (def MASK_BLOCK_PAPER_COLOUR 2r00111000)
 (def MASK_BLOCK_INK_COLOUR 2r00000111)
+
+;; File
+(def FILE_ROOM_OFFSET (- 0x33b4 512))
+(def FILE_TOTAL_ROOM_NUMBER 20)
+(def FILE_TZX_NAME "manic_miner.tzx")

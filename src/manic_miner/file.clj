@@ -5,18 +5,19 @@
     [clojure.java.io :as io]
     [manic-miner.tools :as tool]
     [manic-miner.room :as room]
+    [manic-miner.constant :as constant]
    )
   )
 
 (def manic-miner-filename
   "Mon fichier"
-  (io/resource "manic_miner.tzx"))
+  (io/resource constant/FILE_TZX_NAME))
 
 (def manic-miner-file
   "Description globale du fichier manic miner"
   (b/ordered-map
-    :header-junk (tool/byte-list (- 0x33b4 512))
-    :rooms (b/repeated room/manic-miner-room :length 20)
+    :header-junk (tool/byte-list constant/FILE_ROOM_OFFSET)
+    :rooms (b/repeated room/manic-miner-room :length constant/FILE_TOTAL_ROOM_NUMBER)
     )
   )
 
