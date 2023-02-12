@@ -5,6 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [smee/binary "0.5.5"]
+                 [net.mikera/imagez "0.12.0"]
                  ]
   :main ^:skip-aot manic-miner.core
   :target-path "target/%s"

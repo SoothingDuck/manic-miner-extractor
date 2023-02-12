@@ -1,10 +1,8 @@
 (ns manic-miner.core
   (:require
    [manic-miner.file :as file]
-   [manic-miner.colour :as colour]
-
-   [manic-miner.room :as room]
-   [manic-miner.block :as block])
+   [manic-miner.block :as block]
+   [mikera.image.core :as c])
   (:gen-class)
   )
 
@@ -17,8 +15,12 @@
 
 ;; (print (room/layout-ascii (nth file/room-list 1)))
 
-(-> file/central-cavern
+(prn (range 4))
+
+(def bi (-> file/central-cavern
     :elements
-    :background
-    block/layout-ascii
-    print)
+    :nasty-1
+    block/layout
+    ))
+
+(c/save bi "toto.png" :quality 0.9 :progressive true)
