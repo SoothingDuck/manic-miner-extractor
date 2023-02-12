@@ -1,8 +1,9 @@
 (ns manic-miner.core
   (:require
-    [manic-miner.file :as file]
-    [manic-miner.colour :as colour]
-    )
+   [manic-miner.file :as file]
+   [manic-miner.colour :as colour]
+
+   [manic-miner.room :as room])
   (:gen-class)
   )
 
@@ -12,10 +13,5 @@
 
   )
 
-(let [layout (:screen-layout file/central-cavern)
-      node-list (map (comp :paper-colour colour/attributes) layout)
-      ]
-  node-list
-  )
 
-(prn file/room-names)
+(print (room/layout-ascii (nth file/room-list 1)))

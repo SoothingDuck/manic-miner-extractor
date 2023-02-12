@@ -35,7 +35,15 @@
     )
   )
 
+(def room-list
+  "Extrait les pièces"
+  (let [decoded (decode manic-miner-filename)
+        room-list (:rooms decoded)]
+    room-list
+    )
+  )
+
+
 (def central-cavern
-  (let [decoded (decode manic-miner-filename)]
-    (first (:rooms decoded))
-    ))
+  (first room-list)
+  )

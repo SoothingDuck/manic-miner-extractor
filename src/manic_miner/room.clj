@@ -1,8 +1,8 @@
 (ns manic-miner.room
   (:require
    [org.clojars.smee.binary.core :as b]
-   [clojure.string :as s]
    [manic-miner.tools :as tools]
+   [manic-miner.colour :as colour]
    )
   )
 
@@ -50,3 +50,15 @@
    )
   )
 
+(defn layout-ascii
+  "Renvoie une représentation ASCII de la pièce"
+  [room]
+  (let [layout (:screen-layout room)
+        node-list (map (comp :ink-colour colour/attributes) layout)
+        node-ascii-list (map #(if (= :black %) " " "#") node-list)
+        node-split-32 (partition 32 node-ascii-list)
+        ascii-list (for [x node-split-32] (let [y (apply str x)] (str y "\n")))
+        ]
+    (apply str ascii-list)
+    )
+  )
