@@ -3,7 +3,6 @@
    [org.clojars.smee.binary.core :as b]
    [clojure.string :as s]
    [manic-miner.tools :as tools]
-   [manic-miner.file :as file]
    )
   )
 
@@ -51,15 +50,3 @@
    )
   )
 
-(def manic-miner-room-names
-  "Extrait les noms des pièces"
-  (let [decoded (file/decode file/manic-miner-filename)
-        room-names-list (map :room-name (:rooms decoded))]
-    (map s/trim room-names-list)
-    )
-  )
-
-(def central-cavern
-  (let [decoded (file/decode-manic file/manic-miner-filename)]
-    (first (:rooms decoded))
-    ))

@@ -1,8 +1,11 @@
 (ns manic-miner.colour
-  (:require [manic-miner.colour :as colour]))
+  (:require
+   [manic-miner.colour :as colour]
+   [manic-miner.constant :as constant]
+   ))
 
 
-(def set
+(def codes
   "Colour codes used for colour attributes"
   {
    2r000 :black
@@ -20,9 +23,9 @@
   "Get colour attributes from screen layout"
   [byte-value]
   {
-   :flash (bit-shift-right (bit-and byte-value 2r10000000) 7)
-   :brightness (bit-shift-right (bit-and byte-value 2r01000000) 6)
-   :paper-colour (get set (bit-shift-right (bit-and byte-value 2r00111000) 3))
-   :ink-colour (get set (bit-shift-right (bit-and byte-value 2r00000111) 0))
+   :flash (bit-shift-right (bit-and byte-value constant/MASK_BLOCK_FLASH) 7)
+   :brightness (bit-shift-right (bit-and byte-value constant/MASK_BLOCK_BRIGHTNESS) 6)
+   :paper-colour (get codes (bit-shift-right (bit-and byte-value constant/MASK_BLOCK_PAPER_COLOUR) 3))
+   :ink-colour (get codes (bit-shift-right (bit-and byte-value constant/MASK_BLOCK_INK_COLOUR) 0))
    }
   )
