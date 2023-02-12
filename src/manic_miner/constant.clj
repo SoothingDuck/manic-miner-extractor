@@ -1,0 +1,2 @@
+(ns manic-miner.constant)
+
