@@ -18,6 +18,10 @@
 ;; (room/save-nasties file/central-cavern "DATA/central_cavern_")
 
 (doseq [room file/room-list]
-  (prn (room/formatted-room-name room))
-
+  (let [room-name (room/formatted-room-name room)
+        data-prefix (str "output/" room-name)
+        ]
+    ;; nasties
+    (room/save-nasties room data-prefix)
+    )
   )
