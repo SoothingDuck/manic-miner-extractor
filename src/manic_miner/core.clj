@@ -12,16 +12,20 @@
 
   )
 
-(def first-nasty (second (room/room-nasties file/central-cavern)))
+(def first-nasty (first (room/room-nasties file/central-cavern)))
+(def second-nasty (second (room/room-nasties file/central-cavern)))
+
+;; (prn (block/rgb-colour first-nasty))
 
 ;;; Afficher le mapping
 ;; (room/save-nasties file/central-cavern "DATA/central_cavern_")
 
-(doseq [room file/room-list]
-  (let [room-name (room/formatted-room-name room)
-        data-prefix (str "output/" room-name)
-        ]
-    ;; nasties
-    (room/save-nasties room data-prefix)
-    )
-  )
+;; (doseq [[i room] (map-indexed vector file/room-list)]
+;;   (let [room-name (room/formatted-room-name room)
+;;         data-prefix (str "output/" (format "%02d" (+ i 1)) "_" room-name "_")
+;;         ]
+;;     ;; nasties
+;;     (room/save-nasties room data-prefix)
+;;     )
+;;   )
+(prn (first (:guardian-graphics file/central-cavern)))

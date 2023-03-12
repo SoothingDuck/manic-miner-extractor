@@ -2,6 +2,7 @@
   (:require
    [org.clojars.smee.binary.core :as b]
    [manic-miner.tools :as tools]
+   [manic-miner.colour :as mc]
    [mikera.image.core :as c]
    [mikera.image.colours :as colour]
    [clojure.pprint :refer (cl-format)]
@@ -17,6 +18,7 @@
    :pixel-pattern (b/repeated :byte :length 8)
    )
   )
+
 
 (defn pixel-mapping
   "Renvoie la cartographie du bloc"
@@ -42,6 +44,18 @@
     )
   )
 
+
+(defn rgb-colour
+  "Retourne la couleur associée au bloc"
+  [block]
+  (let [colour-attribute (:colour-attribute block)
+        detailled-attributes (mc/attributes colour-attribute)
+        ink-colour (:ink-colour detailled-attributes)
+        [r g b] (ink-colour mc/zx-spectrum-color-codes)]
+    (colour/rgb r g b)
+    )
+  )
+
 (defn make-image
   "Affiche le bloc"
   [block]
@@ -53,7 +67,7 @@
     (doseq [x (range 8)
             y (range 8)]
       (when (get-in mapping [y x])
-        (c/set-pixel bi x y colour/red)
+        (c/set-pixel bi x y (rgb-colour block))
 
         )
       )

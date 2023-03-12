@@ -25,6 +25,17 @@
    )
   )
 
+(def sprite
+  "Un sprite de 16x16"
+  (b/repeated :byte :length 32)
+
+  )
+
+(def gardian-graphics
+  "Les sprites des gardiens"
+  (b/repeated sprite :length 8)
+  )
+
 (def manic-miner-room
   "Description d'une chambre de manic miner"
   (b/ordered-map
@@ -40,7 +51,8 @@
    :air (tools/byte-list 2) ;; 700 to 701
    :horizontal-guardians (tools/byte-list 31) ;; 702 to 732
    :vertical-guardians (tools/byte-list 35) ;; 733 to 767
-   :guardian-graphics (tools/byte-list 256) ;; 768 to 1023
+   :guardian-graphics gardian-graphics ;; 768 to 1023
+   ;; :guardian-graphics (tools/byte-list 256) ;; 768 to 1023
    )
   )
 
