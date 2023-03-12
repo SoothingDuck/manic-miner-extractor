@@ -1,6 +1,7 @@
 (ns manic-miner.room
   (:require
    [org.clojars.smee.binary.core :as b]
+   [clojure.string :as s]
    [manic-miner.tools :as tools]
    [manic-miner.colour :as colour]
    [manic-miner.block :as block]
@@ -49,10 +50,24 @@
   [(-> room :elements :nasty-1) (-> room :elements :nasty-2)]
   )
 
-(defn room-name
+(defn formatted-room-name
   "Le nom de la pièce"
   [room]
-  (:room-name room)
+  (-> room
+      :room-name
+      s/trim
+      s/lower-case
+      (s/replace "'" "_")
+      (s/replace " " "_")
+      )
+  )
+
+(defn save-nasties
+  "Save nasties pictures with prefix"
+  [room prefix]
+  (doseq [[i nasty] (map-indexed vector (room-nasties room))]
+    (block/save-image nasty (str prefix "nasty_" (+ i 1) ".png"))
+    )
   )
 
 (defn layout-ascii

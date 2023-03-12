@@ -2,9 +2,7 @@
   (:require
    [manic-miner.file :as file]
    [manic-miner.block :as block]
-   [mikera.image.core :as c]
-   [manic-miner.room :as room]
-   [manic-miner.tools :as tools])
+   [manic-miner.room :as room])
   (:gen-class)
   )
 
@@ -17,6 +15,9 @@
 (def first-nasty (second (room/room-nasties file/central-cavern)))
 
 ;;; Afficher le mapping
-(prn (block/pixel-mapping first-nasty))
+;; (room/save-nasties file/central-cavern "DATA/central_cavern_")
 
-(block/show first-nasty)
+(doseq [room file/room-list]
+  (prn (room/formatted-room-name room))
+
+  )

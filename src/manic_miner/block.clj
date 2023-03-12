@@ -42,7 +42,7 @@
     )
   )
 
-(defn show
+(defn make-image
   "Affiche le bloc"
   [block]
 
@@ -56,7 +56,7 @@
         (c/set-pixel bi x y colour/red)
 
         )
-        )
+      )
     ;; fill some random pixels with colours
     ;; (dotimes [i 1024]
     ;;   (aset pixels i (colour/yellow)))
@@ -65,7 +65,13 @@
 
     ;; view our new work of art
     ;; the zoom function will automatically interpolate the pixel values
-    (c/show bi :zoom 10.0 :title "Isn't it beautiful?")
+    ;; (c/show bi :zoom 10.0 :title "Isn't it beautiful?")
+    bi
     )
+  )
 
+(defn save-image
+  "Sauvegarde l'image à l'emplacement donné"
+  [block filename]
+  (c/save (make-image block) filename)
   )

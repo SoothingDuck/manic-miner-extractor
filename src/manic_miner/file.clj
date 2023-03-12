@@ -1,7 +1,6 @@
 (ns manic-miner.file
   (:require
    [org.clojars.smee.binary.core :as b]
-    [clojure.string :as s]
     [clojure.java.io :as io]
     [manic-miner.tools :as tool]
     [manic-miner.room :as room]
@@ -27,13 +26,13 @@
   (let [in (io/input-stream filename)]
     (b/decode manic-miner-file in)))
 
-(def room-names
-  "Extrait les noms des pièces"
-  (let [decoded (decode tzx-filename)
-        room-names-list (map room/room-name (:rooms decoded))]
-    (map s/trim room-names-list)
-    )
-  )
+;; (def room-names
+;;   "Extrait les noms des pièces"
+;;   (let [decoded (decode tzx-filename)
+;;         room-names-list (map (:room-name room/room-name (:rooms decoded))]
+;;     (map s/trim room-names-list)
+;;     )
+;;   )
 
 (def room-list
   "Extrait les pièces"
