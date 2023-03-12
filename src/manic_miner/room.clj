@@ -43,6 +43,18 @@
    )
   )
 
+(defn room-nasties
+  "Les méchants de la pièce"
+  [room]
+  [(-> room :elements :nasty-1) (-> room :elements :nasty-2)]
+  )
+
+(defn room-name
+  "Le nom de la pièce"
+  [room]
+  (:room-name room)
+  )
+
 (defn layout-ascii
   "Renvoie une représentation ASCII de la pièce"
   [room]

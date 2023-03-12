@@ -9,7 +9,7 @@
    )
   )
 
-(def manic-miner-filename
+(def tzx-filename
   "Mon fichier"
   (io/resource constant/FILE_TZX_NAME))
 
@@ -29,15 +29,15 @@
 
 (def room-names
   "Extrait les noms des pièces"
-  (let [decoded (decode manic-miner-filename)
-        room-names-list (map :room-name (:rooms decoded))]
+  (let [decoded (decode tzx-filename)
+        room-names-list (map room/room-name (:rooms decoded))]
     (map s/trim room-names-list)
     )
   )
 
 (def room-list
   "Extrait les pièces"
-  (let [decoded (decode manic-miner-filename)
+  (let [decoded (decode tzx-filename)
         room-list (:rooms decoded)]
     room-list
     )

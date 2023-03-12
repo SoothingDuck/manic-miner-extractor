@@ -1,10 +1,11 @@
 (ns manic-miner.block
   (:require
    [org.clojars.smee.binary.core :as b]
+   [manic-miner.tools :as tools]
    [mikera.image.core :as c]
    [mikera.image.colours :as colour]
-   [clojure.string :as s]
    [clojure.pprint :refer (cl-format)]
+   [clojure.string :as s]
 
    )
   )
@@ -16,6 +17,13 @@
    :pixel-pattern (b/repeated :byte :length 8)
    )
   )
+
+(defn pixel-mapping
+  "Renvoie la cartographie du bloc"
+  [block]
+  (into [] (map tools/convert-number-to-bitvector (:pixel-pattern block)))
+  )
+
 
 (defn layout-ascii
   "Plot ascii layout of pixel pattern"
@@ -34,42 +42,30 @@
     )
   )
 
-(defn layout
-  "Plot ascii layout of pixel pattern"
+(defn show
+  "Affiche le bloc"
   [block]
 
-  (let [bi (c/new-image 8 8)
-        la (layout-ascii block)
-        flatla (-> la (s/replace "\n" ""))
-        pixels (c/get-pixels bi)
+  (let [bi (c/new-image 8 8 false)
+        mapping (pixel-mapping block)
         ]
-    (doseq [x (map vector flatla (range 64))]
-      (let [c (first x)
-            i (second x)]
-        (if (= c \space)
-          (aset pixels i 255)
-          (aset pixels i 0)
-          )
+
+    (doseq [x (range 8)
+            y (range 8)]
+      (when (get-in mapping [y x])
+        (c/set-pixel bi x y colour/red)
+
         )
-      )
-    (c/set-pixels bi pixels)
-    bi
+        )
+    ;; fill some random pixels with colours
+    ;; (dotimes [i 1024]
+    ;;   (aset pixels i (colour/yellow)))
+
+    ;; update the image with the newly changed pixel values
+
+    ;; view our new work of art
+    ;; the zoom function will automatically interpolate the pixel values
+    (c/show bi :zoom 10.0 :title "Isn't it beautiful?")
     )
+
   )
-
-;; create a new image
-(def bi (c/new-image 32 32))
-
-;; gets the pixels of the image, as an int array
-(def pixels (c/get-pixels bi))
-
-;; fill some random pixels with colours
-(dotimes [i 1024]
-  (aset pixels i (colour/rand-colour)))
-
-;; update the image with the newly changed pixel values
-(c/set-pixels bi pixels)
-
-;; view our new work of art
-;; the zoom function will automatically interpolate the pixel values
-;; (c/show bi :zoom 10.0 :title "Isn't it beautiful?")

@@ -2,7 +2,9 @@
   (:require
    [manic-miner.file :as file]
    [manic-miner.block :as block]
-   [mikera.image.core :as c])
+   [mikera.image.core :as c]
+   [manic-miner.room :as room]
+   [manic-miner.tools :as tools])
   (:gen-class)
   )
 
@@ -12,15 +14,9 @@
 
   )
 
+(def first-nasty (second (room/room-nasties file/central-cavern)))
 
-;; (print (room/layout-ascii (nth file/room-list 1)))
+;;; Afficher le mapping
+(prn (block/pixel-mapping first-nasty))
 
-(prn (range 4))
-
-(def bi (-> file/central-cavern
-    :elements
-    :nasty-1
-    block/layout
-    ))
-
-(c/save bi "toto.png" :quality 0.9 :progressive true)
+(block/show first-nasty)
