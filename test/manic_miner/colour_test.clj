@@ -8,7 +8,7 @@
 ;; Colour attributes
 (deftest colour-attribute-22
   (testing "The good colour attribues for 22"
-    (is (= (colour/attributes 22)
+    (is (= (colour/decode-attributes 22)
            {
             :flash 0
             :brightness 0

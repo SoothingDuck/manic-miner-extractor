@@ -38,11 +38,5 @@
   "Extrait les pièces"
   (let [decoded (decode tzx-filename)
         room-list (:rooms decoded)]
-    room-list
-    )
-  )
+    room-list))
 
-
-(def central-cavern
-  (first room-list)
-  )

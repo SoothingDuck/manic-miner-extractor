@@ -49,12 +49,10 @@
   "Retourne la couleur associée au bloc"
   [block]
   (let [colour-attribute (:colour-attribute block)
-        detailled-attributes (mc/attributes colour-attribute)
+        detailled-attributes (mc/decode-attributes colour-attribute)
         ink-colour (:ink-colour detailled-attributes)
         [r g b] (ink-colour mc/zx-spectrum-color-codes)]
-    (colour/rgb r g b)
-    )
-  )
+    (colour/rgb r g b)))
 
 (defn make-image
   "Affiche le bloc"

@@ -2,30 +2,26 @@
   (:require
    [manic-miner.file :as file]
    [manic-miner.block :as block]
-   [manic-miner.room :as room])
-  (:gen-class)
-  )
+   [manic-miner.room :as room]
+   [manic-miner.colour :as colour]
+   [clojure.string :as str])
+  (:gen-class))
+
+;; https://www.icemark.com/dataformats/manic/mmformat.htm
+
+;; Central Cavern Brick Wall
+(let [central-cavern-room (-> file/room-list first)
+      central-cavern-wall (-> central-cavern-room :elements :wall)
+      ]
+  central-cavern-wall
+)
+
+;; https://stackoverflow.com/questions/6973290/generate-and-save-a-png-image-in-clojure
+;; https://github.com/Serabe/rinzelight
+
+(first file/room-list)
 
 (defn -main
   "But premier, récupérer le nom de toutes les caves"
-  [& _]
+  [& _])
 
-  )
-
-(def first-nasty (first (room/room-nasties file/central-cavern)))
-(def second-nasty (second (room/room-nasties file/central-cavern)))
-
-;; (prn (block/rgb-colour first-nasty))
-
-;;; Afficher le mapping
-;; (room/save-nasties file/central-cavern "DATA/central_cavern_")
-
-;; (doseq [[i room] (map-indexed vector file/room-list)]
-;;   (let [room-name (room/formatted-room-name room)
-;;         data-prefix (str "output/" (format "%02d" (+ i 1)) "_" room-name "_")
-;;         ]
-;;     ;; nasties
-;;     (room/save-nasties room data-prefix)
-;;     )
-;;   )
-(prn (first (:guardian-graphics file/central-cavern)))
