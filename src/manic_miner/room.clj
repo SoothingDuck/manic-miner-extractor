@@ -1,10 +1,9 @@
 (ns manic-miner.room
   (:require
    [org.clojars.smee.binary.core :as b]
-   [clojure.string :as s]
    [manic-miner.tools :as tools]
-   [manic-miner.colour :as colour]
    [manic-miner.block :as block]
+   [clojure.string    :as s]
    )
   )
 
@@ -54,5 +53,13 @@
    :guardian-graphics gardian-graphics ;; 768 to 1023
    ;; :guardian-graphics (tools/byte-list 256) ;; 768 to 1023
    )
+  )
+
+;; Helper functions for room
+(defn pretty-name
+  "Get a beautiful version of the room name"
+  [room]
+  (let [room-name (:room-name room)]
+    (s/trim room-name))
   )
 
